@@ -49,6 +49,7 @@ public class FilesInOut {
 						if (Character.isLowerCase(firstChar))
 						firstChar = Character.toUpperCase(firstChar);
 						sb.append(firstChar);
+
 						// will format the rest of the word
 						// depending on the capital condition
 						if(word.length() > 1) {
@@ -57,6 +58,10 @@ public class FilesInOut {
 							}else {
 								sb.append(word.substring(1).toLowerCase());
 							}
+						}
+						else {
+							// will append if the token has only one letter (middle name)
+							sb.append(".");
 						}
 						sb.append(" ");
 					} else if (Character.isDigit(firstChar)) {
