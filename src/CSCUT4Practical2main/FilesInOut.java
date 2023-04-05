@@ -14,10 +14,21 @@ import java.lang.Number;
 public class FilesInOut {
 
     public static void main(String[] args) throws FileNotFoundException {
+    	// determined if the formatted file should be UpperCase
+    	boolean capital = args[0].equalsIgnoreCase("-u");
+    	
     	// gets the file names with arguments
     	File file = new File("../../" + args[0]);
     	File outFile = new File("../../"+ args[1]);
+    	
+    	// updates the arguments if it is UpperCase
+    	if (capital){
+    		file = new File("../../" + args[1]);
+        	outFile = new File("../../"+ args[2]);
+    	}
+    	
     	PrintWriter out = new PrintWriter(outFile);
+    	
     	try {
     		StringBuilder sb = new StringBuilder();
 			Scanner sc = new Scanner(file);
@@ -38,8 +49,14 @@ public class FilesInOut {
 						if (Character.isLowerCase(firstChar))
 						firstChar = Character.toUpperCase(firstChar);
 						sb.append(firstChar);
+						// will format the rest of the word
+						// depending on the capital condition
 						if(word.length() > 1) {
-							sb.append(word.substring(1).toLowerCase());
+							if (capital) {
+								sb.append(word.substring(1).toUpperCase());
+							}else {
+								sb.append(word.substring(1).toLowerCase());
+							}
 						}
 						sb.append(" ");
 					} else if (Character.isDigit(firstChar)) {
