@@ -14,6 +14,7 @@ import java.lang.Number;
 public class FilesInOut {
 
     public static void main(String[] args) throws FileNotFoundException {
+    	// gets the file names with arguments
     	File file = new File("../../" + args[0]);
     	File outFile = new File("../../"+ args[1]);
     	PrintWriter out = new PrintWriter(outFile);
@@ -21,8 +22,12 @@ public class FilesInOut {
     		StringBuilder sb = new StringBuilder();
 			Scanner sc = new Scanner(file);
 			while(sc.hasNextLine()) {
+				// the line will be read and split,
 				String line = sc.nextLine();
 				String tokens[] = line.split(" ");
+				
+				// for every word, if it starts with a letter, the title format will be applied to the word
+				// if a number is found, the dd/mm/yyyy format will be applied
 				for (int i = 0; i < tokens.length; i++) {
 					String word = tokens[i];
 					if (word.length() == 0) {
